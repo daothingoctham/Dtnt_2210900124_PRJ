@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Project1_2210900124DTNTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="GiaodichTK">
+    <Key>
+      <PropertyRef Name="GiaodichID" />
+    </Key>
+    <Property Name="GiaodichID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sotien" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Ngaygiaodich" Type="DateTime" Precision="0" />
+    <Property Name="Mota" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ThanhVienID" Type="Int32" />
+    <NavigationProperty Name="ThanhVien" Relationship="Self.FK__Giaodich__ThanhV__398D8EEE" FromRole="GiaodichTK" ToRole="ThanhVien" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="KhachHangID" />
+    </Key>
+    <Property Name="KhachHangID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="QuanTriID" Type="Int32" />
+    <NavigationProperty Name="QUANTRI" Relationship="Self.FK__KhachHang__QuanT__2C3393D0" FromRole="KhachHang" ToRole="QUANTRI" />
+    <NavigationProperty Name="ThanhVien" Relationship="Self.FK__ThanhVien__Khach__2F10007B" FromRole="KhachHang" ToRole="ThanhVien" />
+  </EntityType>
+  <EntityType Name="NguoiHoTro">
+    <Key>
+      <PropertyRef Name="NguoiHoTroID" />
+    </Key>
+    <Property Name="NguoiHoTroID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LinhVucHoTro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="QuanTriID" Type="Int32" />
+    <NavigationProperty Name="QUANTRI" Relationship="Self.FK__NguoiHoTr__QuanT__33D4B598" FromRole="NguoiHoTro" ToRole="QUANTRI" />
+  </EntityType>
+  <EntityType Name="QUANTRI">
+    <Key>
+      <PropertyRef Name="QuanTriID" />
+    </Key>
+    <Property Name="QuanTriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="VaiTro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK__KhachHang__QuanT__2C3393D0" FromRole="QUANTRI" ToRole="KhachHang" />
+    <NavigationProperty Name="NguoiHoTro" Relationship="Self.FK__NguoiHoTr__QuanT__33D4B598" FromRole="QUANTRI" ToRole="NguoiHoTro" />
+    <NavigationProperty Name="ThanhVien" Relationship="Self.FK__ThanhVien__QuanT__300424B4" FromRole="QUANTRI" ToRole="ThanhVien" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ThanhVien">
+    <Key>
+      <PropertyRef Name="ThanhVienID" />
+    </Key>
+    <Property Name="ThanhVienID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KhachHangID" Type="Int32" />
+    <Property Name="CapDoThanhVien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgayThamGia" Type="DateTime" Precision="0" />
+    <Property Name="NgayHetHan" Type="DateTime" Precision="0" />
+    <Property Name="QuanTriID" Type="Int32" />
+    <NavigationProperty Name="GiaodichTK" Relationship="Self.FK__Giaodich__ThanhV__398D8EEE" FromRole="ThanhVien" ToRole="GiaodichTK" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK__ThanhVien__Khach__2F10007B" FromRole="ThanhVien" ToRole="KhachHang" />
+    <NavigationProperty Name="QUANTRI" Relationship="Self.FK__ThanhVien__QuanT__300424B4" FromRole="ThanhVien" ToRole="QUANTRI" />
+  </EntityType>
+  <Association Name="FK__Giaodich__ThanhV__398D8EEE">
+    <End Role="ThanhVien" Type="Self.ThanhVien" Multiplicity="0..1" />
+    <End Role="GiaodichTK" Type="Self.GiaodichTK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ThanhVien">
+        <PropertyRef Name="ThanhVienID" />
+      </Principal>
+      <Dependent Role="GiaodichTK">
+        <PropertyRef Name="ThanhVienID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KhachHang__QuanT__2C3393D0">
+    <End Role="QUANTRI" Type="Self.QUANTRI" Multiplicity="0..1" />
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUANTRI">
+        <PropertyRef Name="QuanTriID" />
+      </Principal>
+      <Dependent Role="KhachHang">
+        <PropertyRef Name="QuanTriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThanhVien__Khach__2F10007B">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="ThanhVien" Type="Self.ThanhVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="KhachHangID" />
+      </Principal>
+      <Dependent Role="ThanhVien">
+        <PropertyRef Name="KhachHangID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NguoiHoTr__QuanT__33D4B598">
+    <End Role="QUANTRI" Type="Self.QUANTRI" Multiplicity="0..1" />
+    <End Role="NguoiHoTro" Type="Self.NguoiHoTro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUANTRI">
+        <PropertyRef Name="QuanTriID" />
+      </Principal>
+      <Dependent Role="NguoiHoTro">
+        <PropertyRef Name="QuanTriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ThanhVien__QuanT__300424B4">
+    <End Role="QUANTRI" Type="Self.QUANTRI" Multiplicity="0..1" />
+    <End Role="ThanhVien" Type="Self.ThanhVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUANTRI">
+        <PropertyRef Name="QuanTriID" />
+      </Principal>
+      <Dependent Role="ThanhVien">
+        <PropertyRef Name="QuanTriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Project1_2210900124DTNTEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="GiaodichTK" EntityType="Self.GiaodichTK" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" />
+    <EntitySet Name="NguoiHoTro" EntityType="Self.NguoiHoTro" />
+    <EntitySet Name="QUANTRI" EntityType="Self.QUANTRI" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="ThanhVien" EntityType="Self.ThanhVien" />
+    <AssociationSet Name="FK__Giaodich__ThanhV__398D8EEE" Association="Self.FK__Giaodich__ThanhV__398D8EEE">
+      <End Role="ThanhVien" EntitySet="ThanhVien" />
+      <End Role="GiaodichTK" EntitySet="GiaodichTK" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KhachHang__QuanT__2C3393D0" Association="Self.FK__KhachHang__QuanT__2C3393D0">
+      <End Role="QUANTRI" EntitySet="QUANTRI" />
+      <End Role="KhachHang" EntitySet="KhachHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThanhVien__Khach__2F10007B" Association="Self.FK__ThanhVien__Khach__2F10007B">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="ThanhVien" EntitySet="ThanhVien" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NguoiHoTr__QuanT__33D4B598" Association="Self.FK__NguoiHoTr__QuanT__33D4B598">
+      <End Role="QUANTRI" EntitySet="QUANTRI" />
+      <End Role="NguoiHoTro" EntitySet="NguoiHoTro" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ThanhVien__QuanT__300424B4" Association="Self.FK__ThanhVien__QuanT__300424B4">
+      <End Role="QUANTRI" EntitySet="QUANTRI" />
+      <End Role="ThanhVien" EntitySet="ThanhVien" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

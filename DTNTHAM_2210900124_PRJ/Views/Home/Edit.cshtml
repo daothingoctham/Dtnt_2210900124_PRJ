@@ -1,0 +1,34 @@
+﻿
+@model DTNTHAM_2210900124_PRJ.Models.DtntProduct
+@{
+    ViewBag.Title = "Sửa Sản Phẩm";
+}
+
+<h1>Sửa Sản Phẩm</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Price)
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Price)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ImageUrl)
+        @Html.TextBoxFor(m => m.ImageUrl, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ImageUrl)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cập Nhật</button>
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
+}
+

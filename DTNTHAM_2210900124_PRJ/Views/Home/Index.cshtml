@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Trang Chủ";
+    Layout = "~/Views/Shared/_DtntLayout.cshtml"; // Sử dụng layout chung
+}
+
+<div class="container">
+    <header>
+        <h1>Shop Bán Hàng</h1>
+        <nav>
+            <ul>
+                <li><a href="@Url.Action("Index", "Home")">Trang Chủ</a></li>
+                <li><a href="@Url.Action("Products", "Home")">Sản Phẩm</a></li>
+                <li><a href="@Url.Action("About", "Home")">Giới Thiệu</a></li>
+                <li><a href="@Url.Action("Contact", "Home")">Liên Hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="products">
+            <div class="product">
+                <img src="~/Content/images/product1.jpg" alt="Sản phẩm 1">
+                <h3>Sản phẩm 1</h3>
+                <p>Giá: 100.000 VNĐ</p>
+                <button>Mua Ngay</button>
+            </div>
+            <div class="product">
+                <img src="~/Content/images/product2.jpg" alt="Sản phẩm 2">
+                <h3>Sản phẩm 2</h3>
+                <p>Giá: 200.000 VNĐ</p>
+                <button>Mua Ngay</button>
+            </div>
+            <!-- Thêm nhiều sản phẩm khác -->
+        </section>
+    </main>
+
+  
+</div>

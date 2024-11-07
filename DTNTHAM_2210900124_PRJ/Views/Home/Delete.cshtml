@@ -1,0 +1,16 @@
+﻿@model DTNTHAM_2210900124_PRJ.Models.DtntProduct
+
+@{
+    ViewBag.Title = "Xóa Sản Phẩm";
+}
+
+<h1>Xóa Sản Phẩm</h1>
+
+<p>Bạn có chắc chắn muốn xóa sản phẩm <strong>@Model.Name</strong> không?</p>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Id)
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn btn-secondary" })
+}

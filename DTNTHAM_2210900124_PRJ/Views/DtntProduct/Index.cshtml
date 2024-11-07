@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DTNTHAM_2210900124_PRJ.Models.DtntProduct>
+
+@{
+    ViewBag.Title = "Danh Sách Sản Phẩm";
+}
+
+<h1>Danh Sách Sản Phẩm</h1>
+
+<p>
+    @Html.ActionLink("Thêm Sản Phẩm Mới", "Create")
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên Sản Phẩm</th>
+            <th>Giá</th>
+            <th>Hình Ảnh</th>
+            <th>Thao Tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dtntproduct in Model)
+        {
+            <tr>
+                <td>@dtntproduct.Name</td>
+                <td>@dtntproduct.Price.ToString("C")</td>
+                <td>
+                    <img src="@Url.Content(dtntproduct.ImageUrl)" alt="@dtntproduct.Name" style="width: 100px; height: auto;" />
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit") |
+                    @Html.ActionLink("Xóa", "Delete") |
+                    @Html.ActionLink("Thêm vào Giỏ Hàng", "AddToCart")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
